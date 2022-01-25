@@ -19,6 +19,13 @@
       </div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="script.js">
+
+      window.addEventListener('load', (event) => {//add event listener to window get tag then change the text depenging on naviagotr api
+        const statusDisplay = document.getElementByID('status');//get the paragram
+        statusDisplay.textContent = navigator.online ? "Online": "Offline";
+
+      })
+    </script>
   </body>
 </html>

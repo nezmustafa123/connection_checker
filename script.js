@@ -17,7 +17,7 @@ async function connectionStatus() {
     );
     image.src = "./images/online.png";
     setColour();
-    statusDisplay.textContent = "Internet Connection Online";
+    // statusDisplay.textContent = "Internet Connection Online!";
     return fetchResult.status >= 200 && fetchResult.satus < 300;
     //http status code between 200 and 300
     // check to see intenet connetcion is active
@@ -33,18 +33,18 @@ async function connectionStatus() {
 
 setInterval(async () => {
   // async function inside set interval
-  const result = await connectionStatus();
+  const result = await connectionStatus(); //put promise in a variable
+
   if (result) {
     statusDisplay.textContent = "Your internet connection is still functioning";
-
     setColour();
   }
-}, 5000);
+}, 3000);
 
 //CHECK CONNECTION ON LOAD PAGE
 window.addEventListener("load", async (event) => {
   if (connectionStatus()) {
-    console.log(event);
+    // console.log(event);
     statusDisplay.textContent = "Your internet connection is functioning";
   } else {
     statusDisplay.textContent = "Your internet connection is broken";

@@ -28,4 +28,25 @@ async function connectionStatus() {
     bgColour.classList.remove("online");
   }
 }
-connectionStatus();
+
+//MONITOR THE CONNECTION IN REALTIME
+
+setInterval(async () => {
+  // async function inside set interval
+  const result = await connectionStatus();
+  if (result) {
+    statusDisplay.textContent = "Your internet connection is still functioning";
+
+    setColour();
+  }
+}, 5000);
+
+//CHECK CONNECTION ON LOAD PAGE
+window.addEventListener("load", async (event) => {
+  if (connectionStatus()) {
+    console.log(event);
+    statusDisplay.textContent = "Your internet connection is functioning";
+  } else {
+    statusDisplay.textContent = "Your internet connection is broken";
+  }
+});

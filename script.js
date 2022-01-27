@@ -2,10 +2,10 @@
 
 const image = document.getElementById("image");
 const statusDisplay = document.getElementById("status");
-const bgColor = document.getElementById("main");
+const bgColour = document.getElementById("main");
 
-function setColor() {
-  bgColor.classList.add("online");
+function setColour() {
+  bgColour.classList.add("online");
 }
 //fetch something external from server
 
@@ -16,11 +16,16 @@ async function connectionStatus() {
         new Date().getTime()
     );
     image.src = "./images/online.png";
-    setColor();
+    setColour();
+    statusDisplay.textContent = "Internet Connection Online";
     return fetchResult.status >= 200 && fetchResult.satus < 300;
     //http status code between 200 and 300
     // check to see intenet connetcion is active
   } catch (error) {
-    console.log(error);
+    console.log(error); //change status and image source in catch block
+    statusDisplay.textContent = "Internet Connection Offline";
+    image.src = "./images/offline.png";
+    bgColour.classList.remove("online");
   }
 }
+connectionStatus();
